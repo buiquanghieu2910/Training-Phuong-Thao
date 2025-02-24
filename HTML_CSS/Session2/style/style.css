@@ -1,0 +1,36 @@
+/* Thực hiện viết css, không cần thẻ style */
+
+.name3 {
+    font-size: 50pt;
+}
+
+h1,
+p {
+    font-size: 30pt;
+    font-style: italic;
+    text-transform: capitalize;
+}
+
+.name1 {
+    color: red;
+    text-align: center;
+    word-spacing: 10pt;
+}
+
+.name2 {
+    color: pink;
+}
+
+a {
+    font-size: 15pt;
+    color: red;
+}
+
+a:hover,
+.name1:hover {
+    color: orange;
+}
+
+p>span>span>a {
+    color: blue;
+}
