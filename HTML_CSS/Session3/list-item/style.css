@@ -1,0 +1,81 @@
+.item {
+    width: 270px;
+    /* Chế độ hiển thị: ngang */
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    /* Kẻ viền độ dày 1px, solid là nét liền, màu đen (#000) */
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.item .img-product {
+    text-align: center;
+}
+
+.item img {
+    width: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.item:hover {
+    box-shadow: 1px 1px 15px #080808;
+}
+
+.item:hover img {
+    transform: scale(1.1);
+}
+
+.item .name-product {
+    font-weight: bold;
+    font-size: 17pt;
+}
+
+.item .price-product {
+    margin-top: 10px;
+}
+
+.item .price-product {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item .price-product .old-price {
+    text-decoration: line-through;
+}
+
+.item .price-product .current-price {
+    font-weight: bold;
+    color: red;
+}
+
+.item .btn-buy {
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+
+    button {
+        background-color: #ff8989;
+        color: #fff;
+        border: 1px solid #ff8989;
+        padding: 8px;
+        border-radius: 5px;
+        width: 7rem;
+    }
+
+    button:hover {
+        background-color: #fd5858;
+    }
+}
+
+.item:hover .btn-buy {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.3s ease;
+}

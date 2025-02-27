@@ -1,0 +1,78 @@
+body {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Style menu dọc */
+.vertical-menu {
+    background-color: rgb(248, 50, 50);
+    /* giãn trên 5rem */
+    margin-top: 5rem;
+    width: 170px;
+    /* Bo tròn các cạnh */
+    /* border-radius: 20px 10px 10px 10px; */
+    border-radius: 10px;
+}
+
+.vertical-menu ul {
+    padding: 0;
+}
+
+.vertical-menu ul li {
+    /* bỏ dấu chấm ở đầu */
+    list-style: none;
+    padding: 12px;
+}
+
+.vertical-menu ul li:hover {
+    background-color: rgb(255, 122, 122);
+}
+
+.vertical-menu ul li:nth-child(1):hover {
+    border-radius: 10px 10px 0 0;
+}
+
+.vertical-menu ul li:last-child:hover {
+    border-radius: 0 0 10px 10px;
+}
+
+.vertical-menu ul li a {
+    /* bỏ gạch chân */
+    text-decoration: none;
+    color: #fff;
+}
+
+
+/* Style menu ngang */
+.horizontal-menu {
+    margin-top: 50px;
+    background-color: rgb(244 159 255);
+}
+
+.horizontal-menu ul {
+    text-align: center;
+}
+
+.horizontal-menu ul li {
+    /* bỏ dấu chấm ở đầu */
+    list-style: none;
+    /* Chế độ hiển thị: ngang */
+    display: inline-block;
+    padding: 20px;
+}
+
+.horizontal-menu ul li a {
+    text-decoration: none;
+    color: #6604ff !important;
+}
+
+.horizontal-menu ul li a i {
+    margin-right: 5px;
+}
+
+.horizontal-menu ul li:hover {
+    background-color: rgb(249 176 255);
+}
