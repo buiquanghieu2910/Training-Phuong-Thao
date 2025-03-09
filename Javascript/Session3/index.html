@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session3 | Javascript</title>
+</head>
+
+<body>
+    <script>
+        var x = 3;
+        var y = 4;
+        // if (x == y) {
+        //     console.log("x bằng y");
+        // } else {
+        //     console.log("x không bằng y")
+        // }
+
+
+        // var score = 11;
+        // if (score >= 8.5 && score <= 10) {
+        //     console.log("Điểm giỏi");
+        // } else if (score >= 6.5 && score < 8.5) {
+        //     console.log("Điểm khá");
+        // } else if (score >= 5 && score < 6.5) {
+        //     console.log("Điểm trung bình");
+        // } else if (score >= 3 && score < 5) {
+        //     console.log("Điểm yếu");
+        // } else if (score >= 0 && score < 3) {
+        //     console.log("Điểm kém");
+        // } else {
+        //     console.log("Không xác định");
+        // }
+
+
+        // var x = 3;
+        // var y = 3;
+        // x == y ? console.log("x bằng y") : console.log("x không bằng y");
+        // var score = 1100;
+        // (score >= 8.5 && score <= 10) ? console.log("Điểm giỏi") : 
+        // (score >= 6.5 && score < 8.5) ? console.log("Điểm khá") : 
+        // (score >= 5 && score < 6.5) ? console.log("Điểm trung bình") : 
+        // (score >= 3 && score < 5) ? console.log("Điểm yếu") : 
+        // (score >= 0 && score < 3) ? console.log("Điểm kém") : 
+        // console.log("Không xác định");
+
+        // var input = 'N';
+        // switch (input) {
+        //     case 'Y':
+        //         console.log("Yes")
+        //         break;
+        //     case 'N':
+        //         console.log("No")
+        //         break;
+        //     case 'E':
+        //         console.log("Enter")
+        //         break;
+        //     default:
+        //         console.log("Không xác định");
+        //         break;
+        // }
+        // var index = 0;
+        // while (index < 10) {
+        //     console.log(index);
+        //     index++; // => index = index + 1
+        // }
+
+        // var score;
+        // do {
+        //     score = prompt("Mời bạn nhập điểm: ");
+        // } while (!(score >= 0 && score <= 10));
+
+        // console.log(score);
+
+        var names = ['Hồng', 'Thảo', 'Hiếu1', 'Hiếu2', 'Hiếu3', 'Hiếu4', 'Hiếu5', 'Hiếu6'];
+        // for (let i = 0; i <= names.length - 1; i++) {
+        //     console.log(names[i]);
+        // }
+
+        // for (const element of names) {
+        //     if (element === 'Hiếu2') {
+        //         // break;
+        //         continue;
+        //     }
+        //     console.log(element);
+        // }
+        // console.log('Đã thoát khỏi vòng lặp');
+
+        for (let i = 0; i <= 20; i++) {
+            console.log('Giá trị i đầu vòng lặp: ', i);
+            if (i % 2 !== 0) {
+                break;
+            }
+            console.log(i);
+        }
+        console.log('Đã thoát khỏi vòng lặp');
+    </script>
+</body>
+
+</html>
