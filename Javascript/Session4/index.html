@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session4</title>
+</head>
+
+<body>
+    <!-- <button onclick="test()">Click vào đây</button> -->
+
+    <div>
+        <div>
+            <label for="fullName">Họ tên</label for="">
+            <input type="text" placeholder="Mời bạn nhập họ tên" id="fullName">
+        </div>
+        <div>
+            <label for="age">Tuổi</label for="age">
+            <input type="number" placeholder="Mời bạn nhập tuổi" id="age">
+        </div>
+        <div>
+            <label>Giới tính</label>
+            <input type="radio" name="gender" value="Nam" id="male"><label for="male">Nam</label>
+            <input type="radio" name="gender" value="Nữ" id="feMale"><label for="feMale">Nữ</label>
+            <input type="radio" name="gender" value="Other" id="other"><label for="other">Other</label>
+        </div>
+        <div>
+            <label>Ngành học</label>
+            <select id="major">
+                <option value="">--None--</option>
+                <option value="Công nghệ thông tin">Công nghệ thông tin</option>
+                <option value="Quản trị kinh doanh">Quản trị kinh doanh</option>
+                <option value="Thương mại điện tử">Thương mại điện tử</option>
+                <option value="Truyền thông">Truyền thông</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="">Sở thích</label>
+            <div>
+                <input type="checkbox" id="music" name="hobby" value="Nghe nhạc"><label for="music">Nghe nhạc</label>
+                <input type="checkbox" id="read" name="hobby" value="Đọc sách"><label for="read">Đọc sách</label>
+                <input type="checkbox" id="sleep" name="hobby" value="Ngủ nướng"><label for="sleep">Ngủ nướng</label>
+            </div>
+        </div>
+
+        <div>
+            <button onclick="submitForm()">Submit</button>
+        </div>
+    </div>
+
+    <div style="margin-top: 2rem;">
+        <table border>
+            <thead>
+                <tr>
+                    <td>Họ tên</td>
+                    <td>Tuổi</td>
+                    <td>Gender</td>
+                    <td>Ngành học</td>
+                    <td>Sở thích</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td id="viewFullName"></td>
+                    <td id="viewAge"></td>
+                    <td id="viewGender"></td>
+                    <td id="viewMajor"></td>
+                    <td id="viewHobby"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="margin-top: 5rem;" id="clock">
+
+    </div>
+
+    <script>
+        // function sayHello() {
+        //     let name = prompt("What is your name? ");
+        //     alert("Hello " + name + "!");
+        // }
+
+        // sayHello();
+
+        // function sumTwoNumbers(x, y) {
+        //     let sum = Number(x) + Number(y);
+        //     return sum;
+        // }
+
+        // // let result = sumTwoNumbers(2, 3);
+        // // console.log(result* 10);
+
+        // function test() {
+        //     var number1 = prompt("Mời bạn nhập số thứ nhất: ");
+        //     var number2 = prompt("Mời bạn nhập số thứ 2: ");
+        //     console.log(sumTwoNumbers(number1, number2));
+        // }
+
+
+        function submitForm() {
+            var fullName = document.getElementById("fullName").value;
+            var age = document.getElementById("age").value;
+            var gender = document.querySelector('input[name="gender"]:checked').value;
+            var major = document.getElementById("major").value;
+            var hobbyNames = document.getElementsByName('hobby');
+
+            var hobbyViews = [];
+            for (const hobbyEle of hobbyNames) {
+                if (hobbyEle.checked) {
+                    hobbyViews.push(hobbyEle.value)
+                }
+            }
+
+            var viewGenderElement = document.getElementById('viewGender');
+
+
+            document.getElementById('viewFullName').innerHTML = fullName
+            document.getElementById('viewAge').innerHTML = age
+            viewGenderElement.innerHTML = gender
+            document.getElementById('viewMajor').innerHTML = major
+            document.getElementById('viewHobby').innerHTML = hobbyViews
+
+            viewGenderElement.style.backgroundColor = null;
+
+            if (gender == 'Nam') {
+                viewGenderElement.style.backgroundColor = 'red'
+            } else if (gender == 'Nữ') {
+                viewGenderElement.style.backgroundColor = 'pink'
+            }
+        }
+
+        function viewClock() {
+            var date = new Date();
+            document.getElementById('clock').innerHTML = date
+        }
+
+        setInterval(() => {
+            viewClock();
+        }, 1000);
+
+
+    </script>
+</body>
+
+</html>
