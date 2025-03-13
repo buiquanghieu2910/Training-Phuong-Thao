@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="input" placeholder="Enter value" oninput="changeValue(this.value)" onfocus="focusInput()"
+        onblur="blurInput()">
+
+    <h1 id="viewValueInput"></h1>
+
+    <script>
+        // let input = document.getElementById('input');
+        // let viewValueInput = document.getElementById('viewValueInput');
+
+        // input.addEventListener('input', function() {
+        //     viewValueInput.innerHTML = input.value;
+        // });
+
+        function changeValue(input) {
+            console.log(input);
+
+            document.getElementById('viewValueInput').innerHTML = input;
+        }
+
+        function focusInput() {
+            console.log('Mày đã focus vào input rồi');
+        }
+
+        function blurInput() {
+            console.log('Mày đã blur ra khỏi input rồi');
+        }
+    </script>
+</body>
+
+</html>
