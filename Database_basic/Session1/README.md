@@ -132,73 +132,108 @@ INSERT INTO order_items (order_id, product_id, quantity, price) VALUES
 ### Bài 1: Lấy danh sách tất cả người dùng
 
 ```sql
-
+SELECT * FROM users
 ```
 
 ### Bài 2: Lấy danh sách tất cả sản phẩm có giá lớn hơn 5 triệu
 
 ```sql
-
+SELECT * 
+FROM products 
+WHERE price > 5000000
 ```
 
 ### Bài 3: Lấy thông tin đơn hàng của người dùng có `user_id = 1`
 
 ```sql
-
+SELECT * 
+FROM orders 
+WHERE user_id = 1
 ```
 
 ### Bài 4: Lấy danh sách chi tiết đơn hàng của đơn hàng có `order_id = 1`
 
 ```sql
-
+SELECT * 
+FROM order_items 
+WHERE order_id = 1
 ```
 
 ### Bài 5: Lấy danh sách tất cả đơn hàng kèm tên người dùng
 
 ```sql
-
+SELECT orders.*, users.name 
+FROM orders JOIN users ON orders.user_id = users.id
 ```
 
 ### Bài 6: Lấy danh sách sản phẩm có số lượng tồn kho dưới 20
 
 ```sql
-
+SELECT orders.*, users.name
+FROM orders
+         JOIN users ON orders.user_id = users.id;
 ```
 
 ### Bài 7: Lấy tổng doanh thu từ tất cả đơn hàng
 
 ```sql
-
+SELECT *
+FROM products
+WHERE stock < 20;
 ```
 
 ### Bài 8: Lấy danh sách sản phẩm được đặt nhiều nhất
 
 ```sql
-
+SELECT products.*
+FROM products
+         JOIN order_items ON products.id = order_items.product_id
+ORDER BY order_items.quantity DESC
+LIMIT 1;
 ```
 
 ### Bài 9: Lấy thông tin người dùng đã đặt hàng ít nhất một lần
 
 ```sql
-
+SELECT users.* FROM users JOIN orders ON users.id = orders.user_id
 ```
 
 ### Bài 10: Tính số lượng sản phẩm trung bình trên mỗi đơn hàng
 
 ```sql
+-- Tính số lượng sản phẩm trung bình trên mỗi đơn hàng
+SELECT 
+    AVG(total_quantity) AS avg_product_per_order
+FROM (
+    -- Câu truy vấn con tính tổng số lượng sản phẩm trong mỗi đơn hàng
+    SELECT 
+        orders.id,                             -- Chọn ID của đơn hàng
+        SUM(order_items.quantity) AS total_quantity  -- Tính tổng số lượng sản phẩm trong đơn hàng
+    FROM orders
+        JOIN order_items ON orders.id = order_items.order_id  -- Kết nối bảng orders và order_items thông qua order_id
+    GROUP BY orders.id                            -- Nhóm theo ID của đơn hàng để tính tổng số lượng sản phẩm cho mỗi đơn hàng
+) AS order_totals;                               -- Đặt tên cho câu truy vấn con là 'order_totals' và tính trung bình từ kết quả
 
 ```
 
 ### Bài 11: Tìm người dùng có tổng giá trị đơn hàng cao nhất
 
 ```sql
-
+SELECT users.*, sum(orders.total_price) AS total_price_of_user
+FROM orders
+         JOIN users ON orders.user_id = users.id
+GROUP BY orders.user_id
+ORDER BY total_price_of_user DESC
+LIMIT 1;
 ```
 
 ### Bài 12: Liệt kê sản phẩm chưa từng được đặt hàng
 
 ```sql
-
+SELECT products.*
+FROM products
+         LEFT JOIN order_items ON products.id = order_items.product_id
+WHERE order_items.product_id IS NULL;
 ```
 
 ---
