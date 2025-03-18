@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="txt">Vương Phương Thảo</h1>
+    <button id="btn" onclick="handleClick()"></button>
+
+    <script>
+        // Code của Copilot
+        // const txtOrigin = document.getElementById('txt').innerHTML;
+        // const btn = document.getElementById('btn');
+
+        // btn.addEventListener('click', function() {
+        //     if (btn.innerHTML === 'Ẩn') {
+        //         document.getElementById('txt').innerHTML = '';
+        //         btn.innerHTML = 'Hiện';
+        //     } else {
+        //         document.getElementById('txt').innerHTML = txtOrigin;
+        //         btn.innerHTML = 'Ẩn';
+        //     }
+        // });
+
+        // Khai báo biến isHidden và gán giá trị mặc định là false
+        // Dùng để kiểm tra xem element có đang ẩn hay không
+        var isHidden = false;
+        const btn = document.getElementById('btn'); // get button element
+        function checkHidden() {
+            if (isHidden) {
+                document.getElementById('txt').style.display = 'none'; // set style display none by id
+                btn.innerHTML = 'Hiện'; // set title for button
+            } else {
+                document.getElementById('txt').style.display = 'block';
+                btn.innerHTML = 'Ẩn';
+            }
+        }
+
+        // Hàm xử lý khi click vào button
+        function handleClick() {
+            // Set giá trị của isHidden ngược lại
+            isHidden = !isHidden;
+            // Gọi hàm checkHidden()
+            checkHidden();
+        }
+
+        // Gọi hàm checkHidden() khi trang web được load
+        checkHidden();
+
+    </script>
+</body>
+
+</html>

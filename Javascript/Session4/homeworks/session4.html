@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="viewCount">Số lần click: </p>
+    <button onclick="handleClick()">Click vào đây</button>
+
+    <script>
+        var count = 0;
+        const viewCountTxt = document.getElementById('viewCount').innerHTML;
+        viewCount();
+
+        function viewCount() {
+            document.getElementById('viewCount').innerHTML = `${viewCountTxt} ${count}`;
+        }
+
+        function handleClick() {
+            count += 1;
+            viewCount();
+        }
+    </script>
+</body>
+
+</html>
