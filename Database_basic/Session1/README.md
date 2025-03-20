@@ -169,17 +169,15 @@ FROM orders JOIN users ON orders.user_id = users.id
 ### Bài 6: Lấy danh sách sản phẩm có số lượng tồn kho dưới 20
 
 ```sql
-SELECT orders.*, users.name
-FROM orders
-         JOIN users ON orders.user_id = users.id;
+SELECT *
+FROM products
+WHERE stock < 20;
 ```
 
 ### Bài 7: Lấy tổng doanh thu từ tất cả đơn hàng
 
 ```sql
-SELECT *
-FROM products
-WHERE stock < 20;
+SELECT SUM(total_price) FROM orders;
 ```
 
 ### Bài 8: Lấy danh sách sản phẩm được đặt nhiều nhất
