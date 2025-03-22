@@ -100,40 +100,151 @@ INSERT INTO Attendance (EmployeeID, Date, Status) VALUES
 ## 5. Bài Tập SQL
 ### **Bài 1: Hiển thị danh sách nhân viên**
 ```sql
-
+SELECT * FROM Employees;
 ```
 
 ### **Bài 2: Tìm nhân viên thuộc phòng IT**
 ```sql
-
+SELECT e
+FROM Employees e
+JOIN Departments d ON e.DepartmentID = d.DepartmentID
+WHERE d.DepartmentName = 'Phòng IT';
 ```
 
 ### **Bài 3: Tổng số nhân viên mỗi phòng ban**
 ```sql
-
+SELECT d.DepartmentName, COUNT(e.EmployeeID) AS TotalEmployees
+FROM Departments d
+LEFT JOIN Employees e ON d.DepartmentID = e.DepartmentID
+GROUP BY d.DepartmentName;
 ```
 
 ### **Bài 4: Tính tổng lương của từng nhân viên trong tháng 3-2024**
 ```sql
-
+SELECT e.FullName, SUM(s.TotalSalary) AS TotalSalaryInMarch
+FROM Salaries s
+         JOIN Employees e ON s.EmployeeID = e.EmployeeID
+WHERE MONTH(s.SalaryMonth) = 3
+  AND YEAR(s.SalaryMonth) = 2024
+GROUP BY e.FullName;
 ```
 
 ### **Bài 5: Liệt kê nhân viên đi muộn**
 ```sql
-
+SELECT e.FullName, a.Date
+FROM Attendance a
+JOIN Employees e ON a.EmployeeID = e.EmployeeID
+WHERE a.Status = 'Late';
 ```
 
 ### **Bài 6: Tìm phòng ban có nhiều nhân viên nhất**
 ```sql
+# Cơ bản
+SELECT d.DepartmentName, COUNT(e.EmployeeID) AS TotalEmployees
+FROM Departments d
+JOIN Employees e ON d.DepartmentID = e.DepartmentID
+GROUP BY d.DepartmentName
+ORDER BY TotalEmployees DESC
+LIMIT 1;
 
+
+# Nâng cao
+select d.DepartmentID, d.DepartmentName, count(e.EmployeeID) as TotalEmployees
+from Departments d
+         join Employees e on d.DepartmentID = e.DepartmentID
+group by d.DepartmentID, d.DepartmentName
+having TotalEmployees = (select max(TotalEmployees)
+                         from (select d.DepartmentID, count(e.EmployeeID) as TotalEmployees
+                               from Departments d
+                                        join Employees e on d.DepartmentID = e.DepartmentID
+                               group by d.DepartmentID) as sub);
 ```
 
 ### **Bài 7: Tìm nhân viên có mức lương cao nhất**
 ```sql
+# Cơ bản
+SELECT e.FullName, s.TotalSalary 
+FROM Salaries s
+JOIN Employees e ON s.EmployeeID = e.EmployeeID
+ORDER BY s.TotalSalary DESC
+LIMIT 1;
 
+
+# Nâng cao
+SELECT DISTINCT e.EmployeeID, e.FullName, s.TotalSalary
+FROM Employees e
+         JOIN Salaries s ON e.EmployeeID = s.EmployeeID
+WHERE s.TotalSalary = (SELECT MAX(TotalSalary) FROM Salaries);
 ```
 
 ### **Bài 8: Tính tổng số ngày vắng mặt của từng nhân viên trong tháng 3-2024**
+```sql
+# Cách 1 lọc theo Year() và Month()
+SELECT e.EmployeeID, e.FullName, count(a.AttendanceID) AS DaysAbsent
+FROM Employees e
+         JOIN Attendance a ON e.EmployeeID = a.EmployeeID
+WHERE a.Status = 'Absent'
+  AND YEAR(a.Date) = 2024
+  AND MONTH(a.Date) = 3
+GROUP BY e.EmployeeID, e.FullName;
+
+
+# Cách 2 dùng BETWEEN
+SELECT e.EmployeeID, e.FullName, count(a.AttendanceID) AS DaysAbsent
+FROM Employees e
+         JOIN Attendance a ON e.EmployeeID = a.EmployeeID
+WHERE a.Status = 'Absent'
+  AND a.Date BETWEEN '2024-03-01' AND '2024-03-31'
+GROUP BY e.EmployeeID, e.FullName;
+
+
+# Cách 3 dùng >= và <=
+SELECT e.EmployeeID, e.FullName, count(a.AttendanceID) AS DaysAbsent
+FROM Employees e
+         JOIN Attendance a ON e.EmployeeID = a.EmployeeID
+WHERE a.Status = 'Absent'
+  AND a.Date >= '2024-03-01' AND a.Date <= '2024-03-31'
+GROUP BY e.EmployeeID, e.FullName;
+```
+
+### **Bài 9: Tìm nhân viên có mức lương cao nhất trong mỗi phòng ban**
+
+```sql
+
+```
+
+### **Bài 10: Tìm phòng ban có tổng lương cao nhất**
+
+```sql
+
+```
+
+### **Bài 11: Tìm nhân viên có thời gian làm việc lâu nhất trong công ty**
+
+```sql
+
+```
+
+### **Bài 12: Tính tổng số ngày nghỉ phép của từng nhân viên**
+
+```sql
+
+```
+
+### **Bài 13: Tìm những nhân viên chưa nhận lương trong tháng 3-2024**
+
+```sql
+
+```
+
+### **Bài 14: Tính số ngày làm việc của nhân viên trong tháng 3-2024**
+
+```sql
+
+```
+
+### **Bài 15: Tính tổng số lương của nhân viên theo từng chức vụ trong tháng 3-2024**
+
 ```sql
 
 ```
