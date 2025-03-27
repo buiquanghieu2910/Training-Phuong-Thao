@@ -210,43 +210,81 @@ GROUP BY e.EmployeeID, e.FullName;
 ### **Bài 9: Tìm nhân viên có mức lương cao nhất trong mỗi phòng ban**
 
 ```sql
-
+SELECT e.FullName, d.DepartmentName, s.TotalSalary
+FROM Employees e
+         JOIN Departments d ON e.DepartmentID = d.DepartmentID
+         JOIN Salaries s ON e.EmployeeID = s.EmployeeID
+WHERE s.TotalSalary = (SELECT MAX(s2.TotalSalary)
+                       FROM Salaries s2
+                                JOIN Employees e2 ON s2.EmployeeID = e2.EmployeeID
+                       WHERE e2.DepartmentID = e.DepartmentID)
+GROUP BY e.FullName, d.DepartmentName, s.TotalSalary;
 ```
 
 ### **Bài 10: Tìm phòng ban có tổng lương cao nhất**
 
 ```sql
-
+SELECT d.DepartmentName, SUM(s.TotalSalary) AS TotalSalaryInDepartment
+FROM Departments d
+         JOIN Employees e ON d.DepartmentID = e.DepartmentID
+         JOIN Salaries s ON e.EmployeeID = s.EmployeeID
+GROUP BY d.DepartmentName
+ORDER BY TotalSalaryInDepartment DESC
+LIMIT 1;
 ```
 
 ### **Bài 11: Tìm nhân viên có thời gian làm việc lâu nhất trong công ty**
 
 ```sql
-
+SELECT e.FullName, DATEDIFF(CURRENT_DATE, e.HireDate) AS YearsWorked
+FROM Employees e
+ORDER BY YearsWorked DESC
+LIMIT 1;
 ```
 
 ### **Bài 12: Tính tổng số ngày nghỉ phép của từng nhân viên**
 
 ```sql
-
+SELECT e.EmployeeID, e.FullName, SUM(CASE WHEN a.Status = 'On Leave' THEN 1 ELSE 0 END) AS DaysOnLeave
+FROM Employees e
+         JOIN Attendance a ON e.EmployeeID = a.EmployeeID
+GROUP BY e.EmployeeID, e.FullName;
 ```
 
 ### **Bài 13: Tìm những nhân viên chưa nhận lương trong tháng 3-2024**
 
 ```sql
-
+SELECT e.FullName, s.*
+FROM Employees e
+         LEFT JOIN Salaries s ON e.EmployeeID = s.EmployeeID
+                                     AND YEAR(s.SalaryMonth) = 2024
+                                     AND MONTH(s.SalaryMonth) = 3
+WHERE s.SalaryID IS NULL;
 ```
 
 ### **Bài 14: Tính số ngày làm việc của nhân viên trong tháng 3-2024**
 
 ```sql
-
+SELECT e.EmployeeID, e.FullName, COUNT(a.AttendanceID) AS DaysWorked
+FROM Employees e
+         JOIN Attendance a ON e.EmployeeID = a.EmployeeID
+WHERE a.Status = 'Present'
+  AND YEAR(a.Date) = 2024
+  AND MONTH(a.Date) = 3
+GROUP BY e.EmployeeID, e.FullName;
 ```
 
 ### **Bài 15: Tính tổng số lương của nhân viên theo từng chức vụ trong tháng 3-2024**
 
 ```sql
-
+SELECT p.PositionName, SUM(s.TotalSalary) AS TotalSalary
+FROM Employees e
+         JOIN Salaries s ON e.EmployeeID = s.EmployeeID
+         JOIN Positions p ON e.PositionID = p.PositionID
+WHERE YEAR(s.SalaryMonth) = 2024
+  AND MONTH(s.SalaryMonth) = 3
+GROUP BY p.PositionName
+ORDER BY TotalSalary DESC;
 ```
 
 ---
