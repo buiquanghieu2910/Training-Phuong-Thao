@@ -17,7 +17,7 @@
 ### Bài 2: Tính lương theo số giờ làm việc
 - **Quy tắc**:
   - ≤ 40 giờ: 20.000đ/giờ
-  - > 40 giờ: 20.000đ/giờ đầu + 1.5 lần cho số giờ vượt
+  - \> 40 giờ: 20.000đ/giờ đầu + 1.5 lần cho số giờ vượt
 - **Yêu cầu**: Viết sơ đồ xử lý và biểu diễn các bước ra giấy.
 
 ---
